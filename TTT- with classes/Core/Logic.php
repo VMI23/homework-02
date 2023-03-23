@@ -29,7 +29,7 @@ for ($i = 0; $i <= 2; $i++) {
 
 //
 //
-//            //check cols
+//  //check cols
 for($j=0;$j<=2 ;$j++){
     if (Board::getBoard([0,$j]) === $p1Symb && Board::getBoard([1,$j]) === $p1Symb && Board::getBoard([2,$j]) === $p1Symb){
         echo $p1name." wins by filling column No: ".$i;
@@ -66,6 +66,29 @@ if (Board::getBoard([0,0])=== $p1Symb && Board::getBoard([1,1])=== $p1Symb && Bo
     Board::displayBoard();
     return true;
 }
+
+
+//check for tie
+        //logic - check if all slots occupied
+        //nested loop through board if not " " add to counter
+        //check if counter is 9
+
+        $filledSlots = 0;
+        for($i=0; $i <= 2; $i++){
+            for($j= 0; $j<=2; $j++){
+                if(Board::getBoard([$i, $j]) !== " "){
+                    $filledSlots++;
+                }
+            }
+        }
+        if($filledSlots === 9){
+            echo "Its a tie!";
+            echo PHP_EOL;
+            Board::displayBoard();
+            Game::$isTie = true;
+        }
+
+
 
 }
 }
